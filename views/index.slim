@@ -1,0 +1,15 @@
+div style = "display: flex; justify-content: right;"
+    div
+        a href = "/post/create" Create
+        a href = "/user" @usr
+div style = "display: flex; justify-content: center"
+    div 
+        a href = "/post/sort/?type=others" style = "color: black;" Others 
+        a href = "/post/sort/?type=mine" style = "color: black;" Mine 
+
+div 
+    h1 Posts
+    - @posts.each do |post|
+        div.post
+            h1 post["usr"]
+            p post["content"]

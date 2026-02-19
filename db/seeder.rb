@@ -1,6 +1,6 @@
 require 'sqlite3'
 
-db = SQLite3::Database.new("databas.db")
+db = SQLite3::Database.new("db.db")
 
 
 def seed!(db)
@@ -19,17 +19,32 @@ def drop_tables(db)
 end
 
 def create_tables(db)
-  db.execute('CREATE TABLE exempel (
+  db.execute('CREATE TABLE users (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
-              name TEXT NOT NULL, 
-              description TEXT,
-              state BOOLEAN)')
+              name TEXT, 
+              psw_dig TEXT)')
+  db.execute('CREATE TABLE posts (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              content TEXT,
+              user_id INTEGER,
+              FOREIGN KEY(user_id) REFERENCES users(id))')
+  db.execute('CREATE TABLE user_post_like_rel (
+              user_id INTEGER,
+              post_id INTEGER,
+              FOREIGN KEY(user_id) REFERENCES users(id),
+              FOREIGN KEY(post_id) REFERENCES posts(id))')
+  db.execute('CREATE TABLE comments (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              content TEXT,
+              user_id INTEGER,
+              post_id INTEGER,
+              FOREIGN KEY(user_id) REFERENCES users(id),
+              FOREIGN KEY(post_id) REFERENCES posts(id))')
 end
 
 def populate_tables(db)
-  db.execute('INSERT INTO exempel (name, description, state) VALUES ("Köp mjölk", "3 liter mellanmjölk, eko",false)')
-  db.execute('INSERT INTO exempel (name, description, state) VALUES ("Köp julgran", "En rödgran",false)')
-  db.execute('INSERT INTO exempel (name, description, state) VALUES ("Pynta gran", "Glöm inte lamporna i granen och tomten",false)')
+  db.execute('INSERT INTO posts (content, user_id) VALUES ("Köp mjölk", 1)')
+  db.execute('INSERT INTO users (name, psw_dig) VALUES ("Alice", "hashed_password_123")')
 end
 
 

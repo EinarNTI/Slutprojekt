@@ -1,15 +1,15 @@
 div style = "display: flex; justify-content: right;"
     div
-        a href = "/post/create" Create
-        a href = "/user" @usr
-div style = "display: flex; justify-content: center"
+        a style = "color: black;" href = "/posts/create" Create
+        a style = "margin-left: 10px; color: black;" href = "/user" = @username_cookie
+div style = "display: flex; justify-content: center;"
     div 
-        a href = "/post/sort/?type=others" style = "color: black;" Others 
-        a href = "/post/sort/?type=mine" style = "color: black;" Mine 
+        a href = "/posts" style = "color: black; margin-right: 5px;" Others 
+        a href = "/posts/filter/mine" style = "color: black; margin-left: 5px;" Mine 
 
 div 
     h1 Posts
     - @posts.each do |post|
-        div.post
-            h1 post["usr"]
-            p post["content"]
+        div style = "background-color: lightblue; margin: 10px; padding: 10px;"
+            h1 = post["name"]
+            p = post["content"]

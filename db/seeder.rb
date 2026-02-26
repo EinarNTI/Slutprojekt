@@ -15,7 +15,10 @@ def seed!(db)
 end
 
 def drop_tables(db)
-  db.execute('DROP TABLE IF EXISTS exempel')
+  db.execute('DROP TABLE IF EXISTS users')
+  db.execute('DROP TABLE IF EXISTS posts')
+  db.execute('DROP TABLE IF EXISTS user_post_like_rel')
+  db.execute('DROP TABLE IF EXISTS comments')
 end
 
 def create_tables(db)

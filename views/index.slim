@@ -1,7 +1,7 @@
 div style = "display: flex; justify-content: right;"
     div
         a style = "color: black;" href = "/posts/create" Create
-        a style = "margin-left: 10px; color: black;" href = "/user" = @username_cookie
+        a style = "margin-left: 10px; color: black;" href = "/user" = @username
 div style = "display: flex; justify-content: center;"
     div 
         a href = "/posts" style = "color: black; margin-right: 5px;" Others 
@@ -10,6 +10,16 @@ div style = "display: flex; justify-content: center;"
 div 
     h1 Posts
     - @posts.each do |post|
-        div style = "background-color: lightblue; margin: 10px; padding: 10px;"
-            h1 = post["name"]
-            p = post["content"]
+        div style = "background-color: lightblue; margin: 10px; padding: 10px; display: flex; flex-direction: column;"
+            - if @user_id == post["user_id"]
+            form action="/posts/edit/#{post["id"]}" method="get" style = "align-self: flex-end; margin-bottom: 0;"
+                input type="submit" value="Edit"
+            div
+                h1 style = "margin-top: 0" = post["name"]
+                p = post["content"]
+                - if @likes.include?([post["id"]])
+                    form action="/posts/unlike/#{post["id"]}" method="post" 
+                        input type="submit" value="Unlike"
+                - if !(@likes.include?([post["id"]]))
+                    form action="/posts/like/#{post["id"]}" method="post" 
+                        input type="submit" value="Like"

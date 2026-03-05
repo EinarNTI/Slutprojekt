@@ -47,7 +47,6 @@ end
 
 def populate_tables(db)
   db.execute('INSERT INTO posts (content, user_id) VALUES ("Köp mjölk", 1)')
-  db.execute('INSERT INTO users (name, psw_dig) VALUES ("Alice", "hashed_password_123")')
 end
 
 

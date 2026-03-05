@@ -12,8 +12,8 @@ div
     - @posts.each do |post|
         div style = "background-color: lightblue; margin: 10px; padding: 10px; display: flex; flex-direction: column;"
             - if @user_id == post["user_id"]
-            form action="/posts/edit/#{post["id"]}" method="get" style = "align-self: flex-end; margin-bottom: 0;"
-                input type="submit" value="Edit"
+                a href="/posts/edit/#{post["id"]}" style = "align-self: flex-end;"
+                    button Edit
             div
                 h1 style = "margin-top: 0" = post["name"]
                 p = post["content"]

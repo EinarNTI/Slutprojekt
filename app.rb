@@ -6,11 +6,46 @@ require 'bcrypt'
 
 enable :sessions
 
-before do
-  session[:userID_cookie] = 1
+before '/posts/*' do
   if session[:userID_cookie] == nil
-    slim(:login)
+    redirect("/account/login")
   end
+end
+
+before '/posts' do
+  if session[:userID_cookie] == nil
+    redirect("/account/login")
+  end
+end
+
+get '/account/login' do
+  slim(:login)
+end
+
+post '/account/login' do
+  db = db()
+  user_info = db.execute("SELECT * FROM users WHERE name = ?", params[:username])[0]
+  if BCrypt::Password.new(user_info["psw_dig"]) == params[:password]
+    session[:userID_cookie] = user_info["id"]
+    redirect("/posts")
+  end
+end
+
+get '/account/create' do
+  slim(:create_account)
+end
+
+post '/account/create' do
+  db = db()
+  if db.execute("SELECT * FROM users WHERE name = ?", params[:username]) == []
+    db.execute("INSERT INTO users (name, psw_dig) VALUES (?, ?)", [params[:username], BCrypt::Password.create(params[:password])])
+    session[:userID_cookie] = db.execute("SELECT id FROM users WHERE name = ?", params[:username])
+  end
+end
+
+get '/account/logout' do
+  session[:userID_cookie] = nil
+  redirect("/account/login")
 end
 
 get '/' do
@@ -26,7 +61,7 @@ get '/posts' do
   @user_id = session[:userID_cookie]
   @username = db.execute("SELECT name FROM users WHERE id == ?", session[:userID_cookie])[0]["name"]
 
-  @posts = db.execute("SELECT posts.*, users.name FROM posts INNER JOIN users ON posts.user_id")
+  @posts = db.execute("SELECT posts.*, users.name FROM posts INNER JOIN users ON posts.user_id = users.id")
 
   slim(:index)
 end
@@ -36,9 +71,9 @@ get '/posts/filter/:filter' do
 
   db = db()
   if params[:filter] == "mine"
-    @posts = db.execute("SELECT * FROM posts INNER JOIN users ON posts.user_id WHERE users.name = ?", session[:userID_cookie])
+    @posts = db.execute("SELECT * FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.name = ?", session[:userID_cookie])
   else
-    @posts = db.execute("SELECT * FROM posts INNER JOIN users ON posts.user_id")
+    @posts = db.execute("SELECT * FROM posts INNER JOIN users ON posts.user_id = users.id")
   end
 
   slim(:index)

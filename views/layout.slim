@@ -2,4 +2,7 @@ a href="/posts"
     button Home
 a href="/account/logout"
     button Log out
+- if flash[:notice]
+  script
+    | alert("#{flash[:notice]}");
 ==yield

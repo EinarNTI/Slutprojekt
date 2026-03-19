@@ -5,21 +5,23 @@ div style = "display: flex; justify-content: right;"
 div style = "display: flex; justify-content: center;"
     div 
         a href = "/posts" style = "color: black; margin-right: 5px;" Others 
-        a href = "/posts/filter/mine" style = "color: black; margin-left: 5px;" Mine 
+        a href = "/posts/filter/#{@user_id}" style = "color: black; margin-left: 5px;" Mine 
 
 div 
     h1 Posts
     - @posts.each do |post|
         div style = "background-color: lightblue; margin: 10px; padding: 10px; display: flex; flex-direction: column;"
             - if @user_id == post["user_id"]
-                a href="/posts/edit/#{post["id"]}" style = "align-self: flex-end;"
+                a href="/posts/#{post["id"]}/update" style = "align-self: flex-end;"
                     button Edit
             div
-                h1 style = "margin-top: 0" = post["name"]
+                a style = "margin-top: 0; font-size: 170%; color:black" href = "/posts/filter/#{post["user_id"]}" = post["name"]
                 p = post["content"]
-                - if @likes.include?([post["id"]])
-                    form action="/posts/unlike/#{post["id"]}" method="post" 
-                        input type="submit" value="Unlike"
-                - if !(@likes.include?([post["id"]]))
-                    form action="/posts/like/#{post["id"]}" method="post" 
-                        input type="submit" value="Like"
+                div style = "display: flex"
+                    - if @likes.include?([post["id"]])
+                        form action="/posts/#{post["id"]}/unlike" method="post"
+                            input type="submit" value="Unlike"
+                    - if !(@likes.include?([post["id"]]))
+                        form action="/posts/#{post["id"]}/like" method="post"
+                            input type="submit" value="Like"
+                    p = @all_likes.count([post["id"]])

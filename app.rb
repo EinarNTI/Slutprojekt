@@ -4,6 +4,7 @@ require 'sqlite3'
 require 'sinatra/reloader'
 require 'bcrypt'
 require 'sinatra/flash'
+require_relative './DBaser.rb'
 
 enable :sessions
 
@@ -20,12 +21,11 @@ before '/posts' do
 end
 
 get '/account/login' do
-  slim(:login)
+  slim(:"accounts/login")
 end
 
 post '/account/login' do
-  db = db()
-  user_info = db.execute("SELECT * FROM users WHERE name = ?", params[:username])[0]
+  user_info = search_user params[:username]
   if user_info != nil
     if BCrypt::Password.new(user_info["psw_dig"]) == params[:password] and params[:username] != "" and params[:password] != ""
       session[:userID_cookie] = user_info["id"]
@@ -41,24 +41,20 @@ post '/account/login' do
 end
 
 get '/account/new' do
-  slim(:create_account)
+  slim(:"accounts/create_account")
 end
 
 post '/account' do
-  db = db()
-
   if params[:username].length < 3 or params[:password].length < 3 or params[:username].length > 10 or params[:password].length > 10
     flash[:notice] = "Username and password must be at least 3 characters long, and max 10 characters."
     redirect("/account/new")
-  elsif db.execute("SELECT name FROM users WHERE name = ?", params[:username]).length > 0
+  elsif search_user params[:username] > 0
     flash[:notice] = "Username is already taken"
     redirect("/account/new")
   else
-    if db.execute("SELECT * FROM users WHERE name = ?", params[:username]) == []
-      db.execute("INSERT INTO users (name, psw_dig) VALUES (?, ?)", [params[:username], BCrypt::Password.create(params[:password])])
-      session[:userID_cookie] = db.execute("SELECT id FROM users WHERE name = ?", params[:username])[0]["id"]
-      redirect("/posts")
-    end
+    create_user(params[:username], BCrypt::Password.create(params[:password]))
+    session[:userID_cookie] = find_userID params[:username]
+    redirect("/posts")
   end
 end
 
@@ -76,99 +72,80 @@ get '/' do
 end
 
 get '/posts' do
-  db = db()
-  db.results_as_hash = false
-  @likes = db.execute("SELECT post_id FROM user_post_like_rel WHERE user_id == ?", session[:userID_cookie])
+  @likes = find_users_likes(session[:userID_cookie])
 
-  db.results_as_hash = true
   @user_id = session[:userID_cookie]
-  @username = db.execute("SELECT name FROM users WHERE id == ?", session[:userID_cookie])[0]["name"]
+  @username = find_users_name(session[:userID_cookie])
 
-  @posts = db.execute("SELECT posts.*, users.name FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.id DESC")
+  @posts = get_all_posts
 
-  db.results_as_hash = false
-  @all_likes = db.execute("SELECT post_id FROM user_post_like_rel")
+  @all_likes = get_all_likes
 
-  slim(:index)
+  slim(:"posts/index")
 end
 
 get '/posts/filter/:filter' do
-  db = db()
-
   @user_id = session[:userID_cookie]
 
-  @username = db.execute("SELECT name FROM users WHERE id == ?", session[:userID_cookie])[0]["name"]
+  @username = get_users_name(session[:userID_cookie])
 
-  @likes = db.execute("SELECT post_id FROM user_post_like_rel WHERE user_id == ?", session[:userID_cookie])
+  @likes = find_users_likes(session[:userID_cookie])
 
-  @posts = db.execute("SELECT posts.*, users.name FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = ?", params[:filter].to_i)
+  @posts = get_filtered_posts(params[:filter].to_i)
 
-  db.results_as_hash = false
-  @all_likes = db.execute("SELECT post_id FROM user_post_like_rel")
+  @all_likes = get_all_likes
 
-  slim(:index)
+  slim(:"posts/index")
 end
 
 get '/posts/create' do
-  slim(:create)
+  slim(:"posts/create")
 end
 
 post '/posts' do
-  db = db()
   content = params[:content]
   username = session[:userID_cookie]
   if content == "" or content.length > 255
     flash[:notice] = "Post content must be between 1 and 255 characters long"
   else
-    db.execute("INSERT INTO posts (content, user_id) VALUES (?,?)", [content, username])
+    create_post(content, username)
   end
   redirect("/posts")
 end
 
 post '/posts/:postId/like' do
-  db = db()
   @user_id = session[:userID_cookie]
   
-  db.execute("INSERT INTO user_post_like_rel (user_id, post_id) VALUES (?, ?)", [session[:userID_cookie], params[:postId]])
+  send_like(session[:userID_cookie], params[:postId])
   
   redirect("/posts")
 end
 
 post '/posts/:postId/unlike' do
-  db = db()
   @user_id = session[:userID_cookie]
   
-  db.execute("DELETE FROM user_post_like_rel WHERE user_id == ? AND post_id == ?", [session[:userID_cookie], params[:postId]])
+  remove_like(session[:userID_cookie], params[:postId])
   
   redirect("/posts")
 end
 
 get '/posts/:id/update' do
-  db = db()
-
-  if session[:userID_cookie] == db.execute("SELECT user_id FROM posts WHERE id == ?", params[:id])[0]["user_id"]
+  if session[:userID_cookie] == get_post_owner_id(params[:id])
     @post_id = params[:id]
-    slim(:edit)
+    slim(:"posts/edit")
   else
     redirect("/posts")
   end
 end
 
 post '/posts/:id/update' do
-  db = db()
-  if session[:userID_cookie] == db.execute("SELECT user_id FROM posts WHERE id == ?", params[:id])
+  if session[:userID_cookie] == get_post_owner_id(params[:id])
     if content == "" or content.length > 255
       flash[:notice] = "Post content must be between 1 and 255 characters long"
     else
-      db.execute("UPDATE posts SET content = ? WHERE id = ?", [params["content"], params[:id]])
+      update_post(params["content"], params[:id])
     end
   end
 
   redirect("/posts")
-end
-
-def db()
-  db = SQLite3::Database.new("db/db.db")
-  db.results_as_hash = true
-  return db
 end

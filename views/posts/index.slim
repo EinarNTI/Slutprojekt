@@ -1,19 +1,23 @@
 div style = "display: flex; justify-content: right;"
     div
         a style = "color: black;" href = "/posts/create" Create
-        a style = "margin-left: 10px; color: black;" href = "/user" = @username
+        a style = "margin-left: 10px; color: black;" href = "/posts/filter/#{@user_id}" = @username
 div style = "display: flex; justify-content: center;"
     div 
-        a href = "/posts" style = "color: black; margin-right: 5px;" Others 
+        a href = "/posts" style = "color: black; margin-right: 5px;" All 
         a href = "/posts/filter/#{@user_id}" style = "color: black; margin-left: 5px;" Mine 
 
 div 
     h1 Posts
+    p #{@user_id}
     - @posts.each do |post|
         div style = "background-color: lightblue; margin: 10px; padding: 10px; display: flex; flex-direction: column;"
-            - if @user_id == post["user_id"]
-                a href="/posts/#{post["id"]}/update" style = "align-self: flex-end;"
-                    button Edit
+            div style = "display:flex; justify-content:right"
+                - if @user_id == post["user_id"]
+                    a href="/posts/#{post["id"]}/update"
+                        button Edit
+                    form action="/posts/#{post["id"]}/delete" method="post"
+                        input type="submit" value="Delete"
             div
                 a style = "margin-top: 0; font-size: 170%; color:black" href = "/posts/filter/#{post["user_id"]}" = post["name"]
                 p = post["content"]

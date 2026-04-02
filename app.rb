@@ -4,7 +4,7 @@ require 'sqlite3'
 require 'sinatra/reloader'
 require 'bcrypt'
 require 'sinatra/flash'
-require_relative './DBaser.rb'
+require_relative './model/model.rb'
 
 enable :sessions
 
@@ -21,7 +21,7 @@ before '/posts' do
 end
 
 get '/account/login' do
-  slim(:"accounts/login")
+  slim(:"accounts/index")
 end
 
 post '/account/login' do
@@ -41,14 +41,14 @@ post '/account/login' do
 end
 
 get '/account/new' do
-  slim(:"accounts/create_account")
+  slim(:"accounts/new")
 end
 
 post '/account' do
   if params[:username].length < 3 or params[:password].length < 3 or params[:username].length > 10 or params[:password].length > 10
     flash[:notice] = "Username and password must be at least 3 characters long, and max 10 characters."
     redirect("/account/new")
-  elsif search_user params[:username] > 0
+  elsif search_user(params[:username]) != nil
     flash[:notice] = "Username is already taken"
     redirect("/account/new")
   else
@@ -64,7 +64,7 @@ get '/account/logout' do
 end
 
 get '/account/:id' do
-  
+  redirect("/posts/filter/#{params[:id]}")
 end
 
 get '/' do
@@ -87,7 +87,7 @@ end
 get '/posts/filter/:filter' do
   @user_id = session[:userID_cookie]
 
-  @username = get_users_name(session[:userID_cookie])
+  @username = find_users_name(session[:userID_cookie])
 
   @likes = find_users_likes(session[:userID_cookie])
 
@@ -99,7 +99,7 @@ get '/posts/filter/:filter' do
 end
 
 get '/posts/create' do
-  slim(:"posts/create")
+  slim(:"posts/new")
 end
 
 post '/posts' do
@@ -140,7 +140,7 @@ end
 
 post '/posts/:id/update' do
   if session[:userID_cookie] == get_post_owner_id(params[:id])
-    if content == "" or content.length > 255
+    if params["content"] == "" or params["content"].length > 255
       flash[:notice] = "Post content must be between 1 and 255 characters long"
     else
       update_post(params["content"], params[:id])
@@ -148,4 +148,17 @@ post '/posts/:id/update' do
   end
 
   redirect("/posts")
+end
+
+post '/posts/:id/delete' do
+  if session[:userID_cookie] == get_post_owner_id(params[:id])
+    delete_post(params[:id])
+  end
+  redirect "/posts"
+end
+
+post '/account/delete' do
+  delete_account(session[:userID_cookie])
+  session[:userID_cookie9] = nil
+  redirect('/posts')
 end

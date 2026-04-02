@@ -2,6 +2,8 @@ a href="/posts"
     button Home
 a href="/account/logout"
     button Log out
+form action="/account/delete" method="post"
+    input type="submit" value="Delete account"
 - if flash[:notice]
   script
     | alert("#{flash[:notice]}");

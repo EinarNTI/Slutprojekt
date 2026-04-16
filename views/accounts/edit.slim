@@ -1,0 +1,6 @@
+h1 Change account information
+form action="/account/#{@user_to_update}/update" method="post"
+    input type="text" name="username" placeholder="Username" value="#{@username}"
+    input type="password" name="password" placeholder="Password"
+    input type="password" name="password_confirmation" placeholder="Confirm Password"
+    input type="submit" value="Update"

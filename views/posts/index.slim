@@ -1,6 +1,7 @@
 div style = "display: flex; justify-content: right;"
     div
         a style = "color: black;" href = "/posts/create" Create
+        a style = "margin-left: 10px; color: black;" href = "/account/#{@user_id}/update" Edit Account
         a style = "margin-left: 10px; color: black;" href = "/posts/filter/#{@user_id}" = @username
 div style = "display: flex; justify-content: center;"
     div 
@@ -9,17 +10,21 @@ div style = "display: flex; justify-content: center;"
 
 div 
     h1 Posts
-    p #{@user_id}
     - @posts.each do |post|
         div style = "background-color: lightblue; margin: 10px; padding: 10px; display: flex; flex-direction: column;"
             div style = "display:flex; justify-content:right"
-                - if @user_id == post["user_id"]
+                - if @user_id == post["user_id"] or @admin == 1
                     a href="/posts/#{post["id"]}/update"
                         button Edit
                     form action="/posts/#{post["id"]}/delete" method="post"
                         input type="submit" value="Delete"
             div
                 a style = "margin-top: 0; font-size: 170%; color:black" href = "/posts/filter/#{post["user_id"]}" = post["name"]
+                - if @admin == 1
+                    form action="/account/#{post["user_id"]}/delete" method="post"
+                        input type="submit" value="Delete Account"
+                    a href="/account/#{post["user_id"]}/update"
+                        button Update account details 
                 p = post["content"]
                 div style = "display: flex"
                     - if @likes.include?([post["id"]])

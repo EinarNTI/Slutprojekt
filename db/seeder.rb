@@ -25,7 +25,8 @@ def create_tables(db)
   db.execute('CREATE TABLE users (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               name TEXT, 
-              psw_dig TEXT)')
+              psw_dig TEXT,
+              admin BOOL)')
   db.execute('CREATE TABLE posts (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               content TEXT,
@@ -46,7 +47,7 @@ def create_tables(db)
 end
 
 def populate_tables(db)
-  db.execute('INSERT INTO posts (content, user_id) VALUES ("Köp mjölk", 1)')
+  
 end
 
 

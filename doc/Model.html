@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Model
+  
+    &mdash; Documentation by YARD 0.9.38
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Model";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/custom.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (M)</a> &raquo;
+    
+    
+    <span class="title">Model</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Model
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>model/model.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Model module containing database operations for the social media application.</p>
+
+<p>This module provides methods to interact with the SQLite database, including user management, posts, and likes functionality.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><dl class="rdoc-list label-list"><dt>Einar Söderberg Beckman
+<dd></dd></dl>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Version:</p>
+<ul class="version">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_post-instance_method" title="#create_post (instance method)">#<strong>create_post</strong>(content, user_id)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new post in the database.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_user-instance_method" title="#create_user (instance method)">#<strong>create_user</strong>(username, password)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new user in the database.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_account-instance_method" title="#delete_account (instance method)">#<strong>delete_account</strong>(id)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Deletes a user account and all associated posts and likes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_post-instance_method" title="#delete_post (instance method)">#<strong>delete_post</strong>(id)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Deletes a post and all associated likes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_userID-instance_method" title="#find_userID (instance method)">#<strong>find_userID</strong>(username)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds the user ID for a given username.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_users_likes-instance_method" title="#find_users_likes (instance method)">#<strong>find_users_likes</strong>(id)  &#x21d2; Array&lt;Array&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves all post IDs that a user has liked.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_users_name-instance_method" title="#find_users_name (instance method)">#<strong>find_users_name</strong>(id)  &#x21d2; String<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds the username for a given user ID.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_all_likes-instance_method" title="#get_all_likes (instance method)">#<strong>get_all_likes</strong>  &#x21d2; Array&lt;Array&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves all liked post IDs across all users.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_all_posts-instance_method" title="#get_all_posts (instance method)">#<strong>get_all_posts</strong>  &#x21d2; Array&lt;Hash&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves all posts with associated user information, ordered by ID descending.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_filtered_posts-instance_method" title="#get_filtered_posts (instance method)">#<strong>get_filtered_posts</strong>(filter)  &#x21d2; Array&lt;Hash&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves posts filtered by a specific user ID.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_post-instance_method" title="#get_post (instance method)">#<strong>get_post</strong>(post_id)  &#x21d2; Hash<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves a single post with associated user information.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_post_owner_id-instance_method" title="#get_post_owner_id (instance method)">#<strong>get_post_owner_id</strong>(post_id)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves the owner ID of a specific post.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#is_admin-instance_method" title="#is_admin (instance method)">#<strong>is_admin</strong>(id)  &#x21d2; Integer<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks whether a user has admin privileges.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_like-instance_method" title="#remove_like (instance method)">#<strong>remove_like</strong>(user_id, post_id)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Removes a like relationship between a user and a post.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#search_user-instance_method" title="#search_user (instance method)">#<strong>search_user</strong>(username)  &#x21d2; Hash<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Searches for a user by username.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#send_like-instance_method" title="#send_like (instance method)">#<strong>send_like</strong>(user_id, post_id)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Adds a like relationship between a user and a post.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_db-instance_method" title="#start_db (instance method)">#<strong>start_db</strong>  &#x21d2; SQLite3::Database </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Initializes and returns a new SQLite database connection.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_post-instance_method" title="#update_post (instance method)">#<strong>update_post</strong>(content, id)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Updates the content of a specific post.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_user-instance_method" title="#update_user (instance method)">#<strong>update_user</strong>(id, username, password)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Updates a user’s username and password hash.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create_post-instance_method">
+  
+    #<strong>create_post</strong>(content, user_id)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates a new post in the database.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>content</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The post content</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>user_id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user ID of the post author</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 101</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_post'>create_post</span><span class='lparen'>(</span><span class='id identifier rubyid_content'>content</span><span class='comma'>,</span> <span class='id identifier rubyid_user_id'>user_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>INSERT INTO posts (content, user_id) VALUES (?,?)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_content'>content</span><span class='comma'>,</span> <span class='id identifier rubyid_user_id'>user_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_user-instance_method">
+  
+    #<strong>create_user</strong>(username, password)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates a new user in the database.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The username for the new user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The hashed password for the new user</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_user'>create_user</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>INSERT INTO users (name, psw_dig, admin) VALUES (?, ?, 0)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="delete_account-instance_method">
+  
+    #<strong>delete_account</strong>(id)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Deletes a user account and all associated posts and likes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the user account to delete</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_delete_account'>delete_account</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span>
+  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DELETE FROM users WHERE id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DELETE FROM posts WHERE user_id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DELETE FROM user_post_like_rel WHERE user_id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="delete_post-instance_method">
+  
+    #<strong>delete_post</strong>(id)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Deletes a post and all associated likes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the post to delete</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149
+150
+151</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_delete_post'>delete_post</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span>
+  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DELETE FROM posts WHERE id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DELETE FROM user_post_like_rel WHERE post_id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_userID-instance_method">
+  
+    #<strong>find_userID</strong>(username)  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Finds the user ID for a given username.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The username to find the ID for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user ID</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_userID'>find_userID</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT id FROM users WHERE name == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_users_likes-instance_method">
+  
+    #<strong>find_users_likes</strong>(id)  &#x21d2; <tt>Array&lt;Array&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves all post IDs that a user has liked.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user ID</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Array&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of arrays containing post IDs</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_users_likes'>find_users_likes</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span>
+  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_results_as_hash'>results_as_hash</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT post_id FROM user_post_like_rel WHERE user_id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_users_name-instance_method">
+  
+    #<strong>find_users_name</strong>(id)  &#x21d2; <tt>String</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Finds the username for a given user ID.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user ID</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The username if found, nil otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_users_name'>find_users_name</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT name FROM users WHERE id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_row'>row</span> <span class='op'>?</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>name</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_all_likes-instance_method">
+  
+    #<strong>get_all_likes</strong>  &#x21d2; <tt>Array&lt;Array&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves all liked post IDs across all users.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Array&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of arrays containing post IDs that have been liked</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_all_likes'>get_all_likes</span>
+  <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span>
+  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_results_as_hash'>results_as_hash</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT post_id FROM user_post_like_rel</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_all_posts-instance_method">
+  
+    #<strong>get_all_posts</strong>  &#x21d2; <tt>Array&lt;Hash&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves all posts with associated user information, ordered by ID descending.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Hash&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of post hashes with user names</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_all_posts'>get_all_posts</span>
+  <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT posts.*, users.name FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.id DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_filtered_posts-instance_method">
+  
+    #<strong>get_filtered_posts</strong>(filter)  &#x21d2; <tt>Array&lt;Hash&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves posts filtered by a specific user ID.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>filter</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user ID to filter posts by</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Hash&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of post hashes for the specified user</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_filtered_posts'>get_filtered_posts</span><span class='lparen'>(</span><span class='id identifier rubyid_filter'>filter</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT posts.*, users.name FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_filter'>filter</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_post-instance_method">
+  
+    #<strong>get_post</strong>(post_id)  &#x21d2; <tt>Hash</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves a single post with associated user information.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>post_id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The post ID</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The post hash with user name if found, nil otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_post'>get_post</span><span class='lparen'>(</span><span class='id identifier rubyid_post_id'>post_id</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT posts.*, users.name FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_post_id'>post_id</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_post_owner_id-instance_method">
+  
+    #<strong>get_post_owner_id</strong>(post_id)  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves the owner ID of a specific post.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>post_id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the post</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user ID of the post owner</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 130</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_post_owner_id'>get_post_owner_id</span><span class='lparen'>(</span><span class='id identifier rubyid_post_id'>post_id</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT user_id FROM posts WHERE id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_post_id'>post_id</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user_id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="is_admin-instance_method">
+  
+    #<strong>is_admin</strong>(id)  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks whether a user has admin privileges.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user ID</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The admin flag (1 if admin, 0 if not), nil if user not found</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_is_admin'>is_admin</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT admin FROM users WHERE id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>admin</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_like-instance_method">
+  
+    #<strong>remove_like</strong>(user_id, post_id)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Removes a like relationship between a user and a post.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user_id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the user unliking the post</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>post_id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the post being unliked</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+122
+123
+124</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 122</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_like'>remove_like</span><span class='lparen'>(</span><span class='id identifier rubyid_user_id'>user_id</span><span class='comma'>,</span> <span class='id identifier rubyid_post_id'>post_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DELETE FROM user_post_like_rel WHERE user_id == ? AND post_id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_user_id'>user_id</span><span class='comma'>,</span> <span class='id identifier rubyid_post_id'>post_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="search_user-instance_method">
+  
+    #<strong>search_user</strong>(username)  &#x21d2; <tt>Hash</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Searches for a user by username.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The username to search for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>User data hash if found, nil otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_search_user'>search_user</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT * FROM users WHERE name == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="send_like-instance_method">
+  
+    #<strong>send_like</strong>(user_id, post_id)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Adds a like relationship between a user and a post.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user_id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the user liking the post</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>post_id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the post being liked</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112
+113
+114
+115</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 110</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_send_like'>send_like</span><span class='lparen'>(</span><span class='id identifier rubyid_user_id'>user_id</span><span class='comma'>,</span> <span class='id identifier rubyid_post_id'>post_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span> 
+  <span class='kw'>if</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT user_id, post_id FROM user_post_like_rel WHERE user_id == ? AND post_id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_user_id'>user_id</span><span class='comma'>,</span> <span class='id identifier rubyid_post_id'>post_id</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&lt;</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>INSERT INTO user_post_like_rel (user_id, post_id) VALUES (?, ?)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_user_id'>user_id</span><span class='comma'>,</span> <span class='id identifier rubyid_post_id'>post_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_db-instance_method">
+  
+    #<strong>start_db</strong>  &#x21d2; <tt>SQLite3::Database</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Initializes and returns a new SQLite database connection.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>SQLite3::Database</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The database connection with results as hash enabled</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_db'>start_db</span>
+  <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='const'>SQLite3</span><span class='op'>::</span><span class='const'>Database</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>db/db.db</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_results_as_hash'>results_as_hash</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_db'>db</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_post-instance_method">
+  
+    #<strong>update_post</strong>(content, id)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Updates the content of a specific post.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>content</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The new content for the post</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the post to update</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_post'>update_post</span><span class='lparen'>(</span><span class='id identifier rubyid_content'>content</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UPDATE posts SET content = ? WHERE id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_content'>content</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_user-instance_method">
+  
+    #<strong>update_user</strong>(id, username, password)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Updates a user’s username and password hash.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the user to update</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The new username</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The new hashed password</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178
+179
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'model/model.rb', line 178</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_user'>update_user</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_db'><span class='object_link'><a href="#start_db-instance_method" title="Model#start_db (method)">start_db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UPDATE users SET name = ?, psw_dig = ? WHERE id == ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Apr 16 19:53:24 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.38 (ruby-3.3.4).
+</div>
+
+    </div>
+  </body>
+</html>

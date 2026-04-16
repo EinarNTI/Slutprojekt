@@ -1,5 +1,5 @@
 h1 Edit your post
-form action="/posts/#{@post_id}/update" method="post"
-    input type="text" name="content"
+form action="/posts/#{@post["id"]}/update" method="post"
+    textarea name="content" cols="60" rows="20" style="resize: none" = @post["content"]
     br
     input type="submit" value="Submit"
